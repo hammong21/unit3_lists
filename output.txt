@@ -1,0 +1,53 @@
+=== UNIT 3: LIST OPERATIONS ===
+
+=== INSERTION TESTS ===
+Scenario: A user opens their social media timeline. New posts appear at different positions.
+1. Initial timeline: ['Post 1: Morning coffee!', 'Post 2: Weekend hike', 'Post 3: Birthday party']
+
+   - Inserting 'New post: Just launched!' at the beginning (index 0)...
+   - Updated timeline: ['New post: Just launched!', 'Post 1: Morning coffee!', 'Post 2: Weekend hike', 'Post 3: Birthday party']
+
+   - Inserting 'Midday update' in the middle (index 2)...
+   - Updated timeline: ['New post: Just launched!', 'Post 1: Morning coffee!', 'Midday update', 'Post 2: Weekend hike', 'Post 3: Birthday party']
+
+   - Inserting 'Evening thoughts' at the end (index len(posts))...
+   - Updated timeline: ['New post: Just launched!', 'Post 1: Morning coffee!', 'Midday update', 'Post 2: Weekend hike', 'Post 3: Birthday party', 'Evening thoughts']
+
+=== DELETION TESTS ===
+Scenario: The user decides to delete some posts from their timeline.
+Current timeline: ['New post: Just launched!', 'Post 1: Morning coffee!', 'Midday update', 'Post 2: Weekend hike', 'Post 3: Birthday party', 'Evening thoughts']
+
+   - Deleting the post at the top (index 0)...
+   - Removed post: New post: Just launched!
+   - Updated timeline: ['Post 1: Morning coffee!', 'Midday update', 'Post 2: Weekend hike', 'Post 3: Birthday party', 'Evening thoughts']
+
+   - Deleting the post in the middle (index 2)...
+   - Removed post: Post 2: Weekend hike
+   - Updated timeline: ['Post 1: Morning coffee!', 'Midday update', 'Post 3: Birthday party', 'Evening thoughts']
+
+   - Deleting the last post (index len-1)...
+   - Removed post: Evening thoughts
+   - Updated timeline: ['Post 1: Morning coffee!', 'Midday update', 'Post 3: Birthday party']
+
+=== SEARCH TESTS ===
+Scenario: The user searches for a specific post using keywords.
+Current timeline: ['Post 1: Morning coffee!', 'Midday update', 'Post 3: Birthday party']
+
+   - Searching for 'Midday update'...
+   - Result: 'Midday update' was found at index 1.
+
+   - Searching for 'Urgent update'...
+   - Result: 'Urgent update' was not found in the list (returns -1).
+
+=== EDGE CASES ===
+Scenario: Handling unusual or dangerous scenarios to ensure code robustness.
+
+   - Edge Case 1: Attempting to delete from an empty timeline.
+   - Initial empty timeline: []
+   - Attempting to delete from index 0...
+   - Correctly handled: Deletion from an empty list returned None (no crash).
+
+   - Edge Case 2: Attempting to delete using an invalid index.
+   - Current timeline: ['Post 1: Morning coffee!', 'Post 2: Weekend hike', 'Post 3: Birthday party']
+   - Attempting to delete from index 10 (which is out of range)...
+   - Correctly handled: Deletion at an invalid index returned None (no crash).
